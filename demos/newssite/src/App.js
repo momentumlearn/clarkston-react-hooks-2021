@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import ApiKeyContext from "./ApiKeyContext";
+import "tachyons/css/tachyons.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+// const apiKey = 'f9437cfaba50415e8d841cbbe29e184f';
+const apiKey = null;
+
+export default function App() {
+  if (apiKey === null) {
+    return (
+      <div className="helvetica">
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          This site requires a News API token to work. If you do not have one,
+          you can get a free token at{" "}
+          <a href="https://newsapi.org/">News API</a>.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      </div>
+    );
+  }
+
+  return (
+    <ApiKeyContext.Provider value={apiKey}>
+      <h1>Hello World!</h1>
+    </ApiKeyContext.Provider>
   );
 }
-
-export default App;
