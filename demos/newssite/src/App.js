@@ -20,12 +20,12 @@ export default function App() {
                   <a href="https://newsapi.org/">News API</a>.
                 </p>
               </div>
-              <label class="label">API Token</label>
+              <label className="label">API Token</label>
               <input
-                class="input mb-2"
+                className="input mb-2"
                 placeholder="Enter API Token"
-                value={null}
-                onChange={null}
+                value={''}
+                onChange={() => null}
               />
               <button className="button is-primary has-text-weight-bold">Store API Token</button>
             </div>
