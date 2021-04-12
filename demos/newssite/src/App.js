@@ -1,14 +1,14 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-import ApiKeyContext from './ApiKeyContext'
-import {useLocalStorage} from './customHooks'
-import HomePage from './components/HomePage'
+import ApiKeyContext from "./ApiKeyContext";
+import { useLocalStorage } from "./customHooks";
+import HomePage from "./components/HomePage";
 
-const apiKey = null;
+// const apiKey = null;
 
 export default function App() {
-  const [tokenInput, setTokenInput] = useState('')
-  const [apiKey, setApiKey] = useLocalStorage('apiKey', null)
+  const [tokenInput, setTokenInput] = useState("");
+  const [apiKey, setApiKey] = useLocalStorage("apiKey", null);
 
   if (!apiKey) {
     return (
@@ -34,10 +34,12 @@ export default function App() {
                 value={tokenInput}
                 onChange={(event) => setTokenInput(event.target.value)}
               />
-              <button 
-              className="button is-primary has-text-weight-bold"
-              onClick={() => setApiKey(tokenInput)}
-              >Store API Token</button>
+              <button
+                className="button is-primary has-text-weight-bold"
+                onClick={() => setApiKey(tokenInput)}
+              >
+                Store API Token
+              </button>
             </div>
           </div>
         </section>
@@ -46,8 +48,8 @@ export default function App() {
   }
 
   return (
-      <ApiKeyContext.Provider value={[apiKey, setApiKey]}>
-        <HomePage />
-      </ApiKeyContext.Provider>
+    <ApiKeyContext.Provider value={[apiKey, setApiKey]}>
+      <HomePage />
+    </ApiKeyContext.Provider>
   );
 }
