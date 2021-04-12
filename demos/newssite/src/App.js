@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
+
+import HomePage from './components/HomePage'
 
 const apiKey = null;
 
 export default function App() {
+  const [tokenInput, setTokenInput] = useState('')
+  const [apiKey, setApiKey] = useState('')
 
   if (!apiKey) {
     return (
@@ -23,11 +27,15 @@ export default function App() {
               <label className="label">API Token</label>
               <input
                 className="input mb-2"
+                type="password"
                 placeholder="Enter API Token"
-                value={''}
-                onChange={() => null}
+                value={tokenInput}
+                onChange={(event) => setTokenInput(event.target.value)}
               />
-              <button className="button is-primary has-text-weight-bold">Store API Token</button>
+              <button 
+              className="button is-primary has-text-weight-bold"
+              onClick={() => setApiKey(tokenInput)}
+              >Store API Token</button>
             </div>
           </div>
         </section>
@@ -36,6 +44,6 @@ export default function App() {
   }
 
   return (
-      <h1>Hello World!</h1>
+      <HomePage apiKey={apiKey} />
   );
 }
