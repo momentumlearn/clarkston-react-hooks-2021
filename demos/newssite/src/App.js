@@ -1,5 +1,4 @@
 import React from "react";
-import ApiKeyContext from "./ApiKeyContext";
 
 const apiKey = null;
 
@@ -37,8 +36,6 @@ export default function App() {
   }
 
   return (
-    <ApiKeyContext.Provider value={null}>
       <h1>Hello World!</h1>
-    </ApiKeyContext.Provider>
   );
 }
