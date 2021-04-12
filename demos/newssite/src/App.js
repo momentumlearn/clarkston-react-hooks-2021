@@ -1,12 +1,14 @@
 import React, {useState} from "react";
 
+import ApiKeyContext from './ApiKeyContext'
+import {useLocalStorage} from './customHooks'
 import HomePage from './components/HomePage'
 
 const apiKey = null;
 
 export default function App() {
   const [tokenInput, setTokenInput] = useState('')
-  const [apiKey, setApiKey] = useState('')
+  const [apiKey, setApiKey] = useLocalStorage('apiKey', null)
 
   if (!apiKey) {
     return (
@@ -44,6 +46,8 @@ export default function App() {
   }
 
   return (
-      <HomePage apiKey={apiKey} />
+      <ApiKeyContext.Provider value={[apiKey, setApiKey]}>
+        <HomePage />
+      </ApiKeyContext.Provider>
   );
 }
