@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import { fetchHeadlines } from "../api";
 import { useLocalStorage, useApiKey } from "../customHooks";
 import NewsStoriesList from "./NewsStoriesList";
@@ -13,7 +14,7 @@ export default function HomePage() {
 
   useEffect(() => {
     // only make request to API if there are no stories in local storage
-    if (stories === null) {
+    if (apiKey && stories === null) {
       fetchHeadlines(apiKey)
         .then((results) => {
           if (stories === null) {
@@ -27,9 +28,13 @@ export default function HomePage() {
           }
         });
     }
-  });
+  }, [apiKey]);
 
   console.log("cached stories", stories);
+
+  if (!apiKey) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <main className="container">
