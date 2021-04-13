@@ -33,6 +33,17 @@ export default function HomePage() {
 
   return (
     <main className="container">
+      {apiKey && (
+        <button
+          onClick={() => {
+            setApiKey(null);
+            setStories(null);
+          }}
+          className="button is-primary has-text-weight-bold"
+        >
+          Logout
+        </button>
+      )}
       <NewsStoriesList stories={stories} />
     </main>
   );
